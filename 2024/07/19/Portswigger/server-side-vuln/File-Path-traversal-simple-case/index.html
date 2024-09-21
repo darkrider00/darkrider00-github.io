@@ -1,0 +1,86 @@
+<!DOCTYPE html><html lang="en" theme-mode="dark"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>File Path Traversal Simple Case | Perplex blog</title><link rel="icon" type="image/x-icon" href="/favicon.ico"><link rel="preload" as="font" crossorigin="anonymous" href="/font/Bender.ttf"><link rel="preload" as="font" crossorigin="anonymous" href="/font/BenderLight.ttf"><link rel="preload" as="font" crossorigin="anonymous" href="/font/JetBrainsMono-Regular.woff2"><link rel="stylesheet" href="/css/arknights.css"><style>@font-face {
+  font-family: Bender;
+  src: local('Bender'), url("/font/Bender.ttf"), url("/font/Bender.otf");
+}
+@font-face {
+  font-family: BenderLight;
+  src: local('BenderLight'), url("/font/BenderLight.ttf");
+}
+@font-face {
+  font-family: 'JetBrains Mono';
+  src: local('JetBrains Mono'), url('/font/JetBrainsMono-Regular.woff2') format('woff2');
+}
+</style><script>var config = {"root":"/","search":{"preload":false,"activeHolder":"Enter here","blurHolder":"Search","noResult":"Data \"$0\" not found"},"code":{"codeInfo":"$0 - $1 lines","copy":"copy"}}</script><link type="text/css" rel="stylesheet" href="/lib/encrypt/hbe.style.css"><script src="//unpkg.com/mermaid@10.5.0/dist/mermaid.min.js"></script><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lightgallery.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-zoom.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-thumbnail.css"><link type="text/css" rel="stylesheet" href="/lib/fontawesome/css/all.min.css"><script>if (window.localStorage.getItem('theme-mode') === 'light')
+ document.documentElement.setAttribute('theme-mode', 'light')
+if (window.localStorage.getItem('theme-mode') === 'dark')
+ document.documentElement.setAttribute('theme-mode', 'dark')</script><style>@font-face {
+ font-family: BenderLight;
+ src: local('Bender'), url("/font/BenderLight.woff2") format('woff2');
+}
+@font-face {
+ font-family: 'JetBrains Mono';
+ src: local('JetBrains Mono'), url('/font/JetBrainsMono-Regular.woff2') format('woff2');
+}</style><style>:root {
+ --dark-background: url('https://ak.hypergryph.com/assets/index/images/ak/pc/bk.jpg');
+ --light-background: url('/img/bk.jpg');
+ --theme-encrypt-confirm: 'confirm'
+}</style><script defer src="/js/arknights.js"></script><script defer src="/js/search.js"></script><script defer type="module">import mermaid from '//unpkg.com/mermaid@10.5.0/dist/mermaid.esm.mjs';
+window.mermaid = mermaid;
+code.paintMermaid();
+</script><script async src="//unpkg.com/lightgallery@2.7.1/lightgallery.min.js"></script><script async src="//unpkg.com/lightgallery@2.7.1/plugins/zoom/lg-zoom.min.js"></script><script async src="//unpkg.com/lightgallery@2.7.1/plugins/thumbnail/lg-thumbnail.min.js"></script><script async src="/lib/encrypt/hbe.js"></script><script async src="/js/pjax.js"></script><script class="pjax-js">reset= () => {document.querySelector('.lg-container')?.remove()
+lightGallery(document.getElementById('post-bg'), {
+  plugins: [lgZoom,lgThumbnail],
+  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js','data-pjax','.busuanzi'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script><script class="pjax-js">reset= () => {document.querySelector('.lg-container')?.remove()
+lightGallery(document.getElementById('post-bg'), {
+  plugins: [lgZoom,lgThumbnail],
+  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script><meta name="generator" content="Hexo 7.3.0"></head><body><div class="loading" style="opacity: 0;"><div class="loadingBar left"></div><div class="loadingBar right"></div></div><main><header class="closed"><div class="navBtn"><i class="navBtnIcon"><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span></i></div><nav><div class="navItem" id="search-header"><span class="navItemTitle"><input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="Search" spellcheck="false" maxlength="50" type="text" id="search-input"></span></div><div class="navItem" id="search-holder"></div><div class="search-popup" tabindex="0"><div id="search-result"></div></div><ol class="navContent"><li class="navItem"><a class="navBlock" href="/"><span class="navItemTitle">Home</span></a></li><li class="navItem" matchdata="categories,tags"><a class="navBlock" href="/archives/"><span class="navItemTitle">Archives</span></a></li></ol></nav></header><article><div id="post-bg"><div id="post-title"><h1>File Path Traversal Simple Case</h1><div id="post-info"><span>First Post: <div class="control"><time datetime="2024-07-19T05:19:46.000Z" id="date"> 2024-07-19</time></div></span><br><span>Last Update: <div class="control"><time datetime="2024-09-21T17:10:10.424Z" id="updated"> 2024-09-21</time></div></span></div></div><hr><div id="post-content"><p>Lab URL :<br><a target="_blank" rel="noopener" href="https://0ac7003b03b289fd80483a4d00050045.web-security-academy.net/">https://0ac7003b03b289fd80483a4d00050045.web-security-academy.net/</a></p>
+<p class='item-img' data-src='https://dl.dropbox.com/scl/fi/sbhjvs4a6qsuux87y3mgr/Pasted-image-20240514185624.png?rlkey=lpdn8fof8ux1lpgjo815qilnf&st=ec65qz7f&dl=0'><img src="https://dl.dropbox.com/scl/fi/sbhjvs4a6qsuux87y3mgr/Pasted-image-20240514185624.png?rlkey=lpdn8fof8ux1lpgjo815qilnf&st=ec65qz7f&dl=0" alt="file path 1"></p>
+<p>This lab objective is to  read &#x2F;etc&#x2F;passwd file from the url </p>
+<p class='item-img' data-src='https://dl.dropbox.com/scl/fi/yrbpljg953p29tqwh0v1b/Pasted-image-20240514185739.png?rlkey=xfxsacqc9o4d95dlvegzu6e3p&st=9sezratp&dl=0'><img src="https://dl.dropbox.com/scl/fi/yrbpljg953p29tqwh0v1b/Pasted-image-20240514185739.png?rlkey=xfxsacqc9o4d95dlvegzu6e3p&st=9sezratp&dl=0" alt="file path 2"></p>
+<p class='item-img' data-src='https://dl.dropbox.com/scl/fi/nsht5hi4jnhnakgbro85o/Pasted-image-20240514190029.png?rlkey=t4ehh5q8lszfkoix8ghqpxsrl&st=5hgt1uen&dl=0'><img src="https://dl.dropbox.com/scl/fi/nsht5hi4jnhnakgbro85o/Pasted-image-20240514190029.png?rlkey=t4ehh5q8lszfkoix8ghqpxsrl&st=5hgt1uen&dl=0" alt="file path 3"></p>
+<p>we can click on view item to get the more details about the product and if we look at the url :</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">https://0ac7003b03b289fd80483a4d00050045.web-security-academy.net/product?productId=1<br></code></pre></td></tr></table></figure>
+<p>but the parameter should be filename if we want to inject the payload so let’s open a image in new tab </p>
+<p class='item-img' data-src='https://dl.dropbox.com/scl/fi/nfzv2hgir27rqck13mq72/Pasted-image-20240514190534.png?rlkey=tjwm9j0u4o722mragmrmyc7rv&st=g8o2d2io&dl=0'><img src="https://dl.dropbox.com/scl/fi/nfzv2hgir27rqck13mq72/Pasted-image-20240514190534.png?rlkey=tjwm9j0u4o722mragmrmyc7rv&st=g8o2d2io&dl=0" alt="file path 4"></p>
+<p>if we look at the url now :</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">https://0ac7003b03b289fd80483a4d00050045.web-security-academy.net/image?filename=38.jpg<br></code></pre></td></tr></table></figure>
+<p>since we have a filename as a parameter we can use ..&#x2F;..&#x2F;..&#x2F;etc&#x2F;passwd<br>but before that let’s change the file number and see if can we get a different image </p>
+<p class='item-img' data-src='https://dl.dropbox.com/scl/fi/ykyvyr3ovmsr3ok4h0s1n/Pasted-image-20240514190736.png?rlkey=3uktgijn5zy593dqlubsosm36&st=30ko0xw0&dl=0'><img src="https://dl.dropbox.com/scl/fi/ykyvyr3ovmsr3ok4h0s1n/Pasted-image-20240514190736.png?rlkey=3uktgijn5zy593dqlubsosm36&st=30ko0xw0&dl=0" alt="file path 5"></p>
+<p>here we changed the filename from 38.jpg to 30.jpg here we can access another files by changing the parameter values in the URL</p>
+<p>so now let’s try our payload <code>../../../etc/passwd</code> to read the password file </p>
+<p class='item-img' data-src='https://dl.dropbox.com/scl/fi/o8tec6v067o4t19emsf8q/Pasted-image-20240514191137.png?rlkey=zhrd7ev57w1gk5ivf1wzzi89d&st=gaqggvrp&dl=0'><img src="https://dl.dropbox.com/scl/fi/o8tec6v067o4t19emsf8q/Pasted-image-20240514191137.png?rlkey=zhrd7ev57w1gk5ivf1wzzi89d&st=gaqggvrp&dl=0" alt="file path 6"></p>
+<p>we got nothing so there might be some kind of input sanitization here so instead of giving a indirect path to the file let’s directly specify <code>/etc/passed</code> to get access to the file</p>
+<p class='item-img' data-src='https://dl.dropbox.com/scl/fi/zf8zsdya2fmtmvuuds3qn/Pasted-image-20240514192015.png?rlkey=qev90wejla79fduqw26z14y6z&st=diouton0&dl=0'><img src="https://dl.dropbox.com/scl/fi/zf8zsdya2fmtmvuuds3qn/Pasted-image-20240514192015.png?rlkey=qev90wejla79fduqw26z14y6z&st=diouton0&dl=0" alt="file path 7"></p>
+<p>if we want to view the file we need to intercept this request using burp suite</p>
+<p class='item-img' data-src='https://dl.dropbox.com/scl/fi/vgeds5unxu4ctbu81zc0h/Pasted-image-20240514192543.png?rlkey=rrlhpgdux00fplr94gd54bhy2&st=5xytxu2p&dl=0'><img src="https://dl.dropbox.com/scl/fi/vgeds5unxu4ctbu81zc0h/Pasted-image-20240514192543.png?rlkey=rrlhpgdux00fplr94gd54bhy2&st=5xytxu2p&dl=0" alt="file path 8"></p>
+<p>we have our request captured in the burpsuite repeater<br>let’s inject our payload</p>
+<p class='item-img' data-src='https://dl.dropbox.com/scl/fi/d21tlwqw1m3j854m2qx45/Pasted-image-20240514192759.png?rlkey=ojjyrfd4avdhdriq76b9kjd7b&st=jb4duhfa&dl=0'><img src="https://dl.dropbox.com/scl/fi/d21tlwqw1m3j854m2qx45/Pasted-image-20240514192759.png?rlkey=ojjyrfd4avdhdriq76b9kjd7b&st=jb4duhfa&dl=0" alt="file path 9"></p>
+<p>as we can see we are able to view all files that we shouldn’t access</p>
+<p>for more information refer : <a target="_blank" rel="noopener" href="https://youtu.be/Wt0gk05MBz0">https://youtu.be/Wt0gk05MBz0</a></p>
+<div id="paginator"></div></div><div id="post-footer"><div id="pages"><div class="footer-link" style="width: 50%;text-align:right;border-right:1px #fe2 solid"><a href="/2024/07/19/Portswigger/SQL-injection/Sql-injection/">← Next Sql Injection</a></div><div class="footer-link" style="width: 50%;right:1px;border-left:1px #fe2 solid"><a href="/2024/07/19/Installation%20and%20setup/Upgrading%20To%20Windows%2010/">Upgrading your windows Prev →</a></div></div></div></div><div class="bottom-btn"><div><a class="i-top" id="to-top" onClick="scrolls.scrolltop();" title="To Top" style="opacity: 0; display: none;">∧ </a><a class="i-color" id="color-mode" onClick="colorMode.change()" title="Change Theme"></a></div></div></article><aside><div id="about"><a href="/" id="logo"><img src="https://dl.dropbox.com/scl/fi/fqvt7r79helfg6xr2ezg0/law-removebg-preview.png?rlkey=d897y2x6cos2hcasqagui6wy9&amp;st=itvktys9&amp;dl=0" alt="Logo"></a><h1 id="Dr"><a href="/">Santhosh vardan</a></h1><div id="description"><p></p></div><div id="social-links"><a class="social" target="_blank" rel="noopener" href="https://github.com/darkrider00"><i class="fab fa-github" alt="GitHub"></i></a><a class="social" href="mailto:santoshvardan007@gmail.com"><i class="fa fa-envelope" alt="E-Mail"></i></a><a class="social" target="_blank" rel="noopener" href="https://x.com/perplex_007"><i class="fa-brands fa-twitter" alt="Twitter"></i></a><a class="social" target="_blank" rel="noopener" href="https://www.linkedin.com/in/perplex007/"><i class="fab fa-linkedin" alt="Linkedin"></i></a></div></div><div id="aside-block"></div><footer><nobr>Published with <a target="_blank" rel="noopener" href="http://hexo.io">Hexo</a></nobr><wbr><nobr> Theme <a target="_blank" rel="noopener" href="https://github.com/Yue-plus/hexo-theme-arknights">Arknights</a></nobr><wbr><nobr> by <a target="_blank" rel="noopener" href="https://github.com/Yue-plus">Yue_plus</a></nobr></footer></aside></main><canvas id="canvas-dust"></canvas></body></html>

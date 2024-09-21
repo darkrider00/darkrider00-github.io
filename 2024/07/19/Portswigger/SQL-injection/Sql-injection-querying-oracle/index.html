@@ -1,0 +1,105 @@
+<!DOCTYPE html><html lang="en" theme-mode="dark"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Sql Injection Querying Oracle | Perplex blog</title><link rel="icon" type="image/x-icon" href="/favicon.ico"><link rel="preload" as="font" crossorigin="anonymous" href="/font/Bender.ttf"><link rel="preload" as="font" crossorigin="anonymous" href="/font/BenderLight.ttf"><link rel="preload" as="font" crossorigin="anonymous" href="/font/JetBrainsMono-Regular.woff2"><link rel="stylesheet" href="/css/arknights.css"><style>@font-face {
+  font-family: Bender;
+  src: local('Bender'), url("/font/Bender.ttf"), url("/font/Bender.otf");
+}
+@font-face {
+  font-family: BenderLight;
+  src: local('BenderLight'), url("/font/BenderLight.ttf");
+}
+@font-face {
+  font-family: 'JetBrains Mono';
+  src: local('JetBrains Mono'), url('/font/JetBrainsMono-Regular.woff2') format('woff2');
+}
+</style><script>var config = {"root":"/","search":{"preload":false,"activeHolder":"Enter here","blurHolder":"Search","noResult":"Data \"$0\" not found"},"code":{"codeInfo":"$0 - $1 lines","copy":"copy"}}</script><link type="text/css" rel="stylesheet" href="/lib/encrypt/hbe.style.css"><script src="//unpkg.com/mermaid@10.5.0/dist/mermaid.min.js"></script><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lightgallery.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-zoom.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-thumbnail.css"><link type="text/css" rel="stylesheet" href="/lib/fontawesome/css/all.min.css"><script>if (window.localStorage.getItem('theme-mode') === 'light')
+ document.documentElement.setAttribute('theme-mode', 'light')
+if (window.localStorage.getItem('theme-mode') === 'dark')
+ document.documentElement.setAttribute('theme-mode', 'dark')</script><style>@font-face {
+ font-family: BenderLight;
+ src: local('Bender'), url("/font/BenderLight.woff2") format('woff2');
+}
+@font-face {
+ font-family: 'JetBrains Mono';
+ src: local('JetBrains Mono'), url('/font/JetBrainsMono-Regular.woff2') format('woff2');
+}</style><style>:root {
+ --dark-background: url('https://ak.hypergryph.com/assets/index/images/ak/pc/bk.jpg');
+ --light-background: url('/img/bk.jpg');
+ --theme-encrypt-confirm: 'confirm'
+}</style><script defer src="/js/arknights.js"></script><script defer src="/js/search.js"></script><script defer type="module">import mermaid from '//unpkg.com/mermaid@10.5.0/dist/mermaid.esm.mjs';
+window.mermaid = mermaid;
+code.paintMermaid();
+</script><script async src="//unpkg.com/lightgallery@2.7.1/lightgallery.min.js"></script><script async src="//unpkg.com/lightgallery@2.7.1/plugins/zoom/lg-zoom.min.js"></script><script async src="//unpkg.com/lightgallery@2.7.1/plugins/thumbnail/lg-thumbnail.min.js"></script><script async src="/lib/encrypt/hbe.js"></script><script async src="/js/pjax.js"></script><script class="pjax-js">reset= () => {document.querySelector('.lg-container')?.remove()
+lightGallery(document.getElementById('post-bg'), {
+  plugins: [lgZoom,lgThumbnail],
+  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js','data-pjax','.busuanzi'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script><script class="pjax-js">reset= () => {document.querySelector('.lg-container')?.remove()
+lightGallery(document.getElementById('post-bg'), {
+  plugins: [lgZoom,lgThumbnail],
+  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script><meta name="generator" content="Hexo 7.3.0"></head><body><div class="loading" style="opacity: 0;"><div class="loadingBar left"></div><div class="loadingBar right"></div></div><main><header class="closed"><div class="navBtn"><i class="navBtnIcon"><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span></i></div><nav><div class="navItem" id="search-header"><span class="navItemTitle"><input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="Search" spellcheck="false" maxlength="50" type="text" id="search-input"></span></div><div class="navItem" id="search-holder"></div><div class="search-popup" tabindex="0"><div id="search-result"></div></div><ol class="navContent"><li class="navItem"><a class="navBlock" href="/"><span class="navItemTitle">Home</span></a></li><li class="navItem" matchdata="categories,tags"><a class="navBlock" href="/archives/"><span class="navItemTitle">Archives</span></a></li></ol></nav></header><article><div id="post-bg"><div id="post-title"><h1>Sql Injection Querying Oracle</h1><div id="post-info"><span>First Post: <div class="control"><time datetime="2024-07-19T05:42:59.000Z" id="date"> 2024-07-19</time></div></span><br><span>Last Update: <div class="control"><time datetime="2024-09-21T17:10:47.977Z" id="updated"> 2024-09-21</time></div></span></div></div><hr><div id="post-content"><p class='item-img' data-src='https://dl.dropbox.com/scl/fi/zr2psydu1suf4gzl7vmzh/Pasted-image-20240528110905.png?rlkey=slionxwxgkzbbqpfz1zwwhq82&st=r1siyj6f&dl=0'><img src="https://dl.dropbox.com/scl/fi/zr2psydu1suf4gzl7vmzh/Pasted-image-20240528110905.png?rlkey=slionxwxgkzbbqpfz1zwwhq82&st=r1siyj6f&dl=0"></p>
+<p>From the lab description we know that there is SQL vulnerability in product category and to solve this lab we need to display database version string</p>
+<p>And this is a ORACLE database</p>
+<p>Refer to SQL cheatsheet here</p>
+<p><a target="_blank" rel="noopener" href="https://portswigger.net/web-security/sql-injection/cheat-sheet">https://portswigger.net/web-security/sql-injection/cheat-sheet</a></p>
+<p>TO retrieve the database version and contents these are the payloads available here</p>
+<p class='item-img' data-src='https://dl.dropbox.com/scl/fi/w81634fm5rwb361kn4kyc/Pasted-image-20240528111334.png?rlkey=lrn8p3cs5tus982ydfdzoa038&st=mt7kh3an&dl=0'><img src="https://dl.dropbox.com/scl/fi/w81634fm5rwb361kn4kyc/Pasted-image-20240528111334.png?rlkey=lrn8p3cs5tus982ydfdzoa038&st=mt7kh3an&dl=0"></p>
+<p>Now let’s access the website</p>
+<p class='item-img' data-src='https://dl.dropbox.com/scl/fi/wnnjfjeksnp9budwdf445/Pasted-image-20240528111621.png?rlkey=j9ri37dpdqqfbraj3uuzx6n4j&st=0zame2s0&dl=0'><img src="https://dl.dropbox.com/scl/fi/wnnjfjeksnp9budwdf445/Pasted-image-20240528111621.png?rlkey=j9ri37dpdqqfbraj3uuzx6n4j&st=0zame2s0&dl=0"></p>
+<p>From the website if we select the different categories mentioned  here by selecting different categories the website is refining our search </p>
+<p>if we observe we are getting the product and it’s details so first we have to determine the number of columns in the table </p>
+<p>to determine the number of problems in the table we can use ORDER BY and see result </p>
+<p class='item-img' data-src='https://dl.dropbox.com/scl/fi/ga6tdkl9xsf4ww3sp48ls/Pasted-image-20240528112029.png?rlkey=25qf0lhe33ujpgtqrp62yvpd0&st=bdkqo7wg&dl=0'><img src="https://dl.dropbox.com/scl/fi/ga6tdkl9xsf4ww3sp48ls/Pasted-image-20240528112029.png?rlkey=25qf0lhe33ujpgtqrp62yvpd0&st=bdkqo7wg&dl=0"></p>
+<p>We’ve intercepted our request and we’ll send it to repeater and inject our payload</p>
+<h3 id="ABOUT-ORDER-BY"><a href="#ABOUT-ORDER-BY" class="headerlink" title="ABOUT ORDER BY:"></a>ABOUT ORDER BY:</h3><p>‘ ORDER BY 1– ‘ ORDER BY 2– ‘ ORDER BY 3– etc.<br>used to determine the number of columns</p>
+<p><code>The ORDER BY position number 3 is out of range of the number of items in the select list.</code></p>
+<ul>
+<li>The column in an <code>ORDER BY</code> clause can be specified by its index, so you don’t need to know the names of any columns.</li>
+<li>When the specified column index exceeds the number of actual columns in the result set, the database returns an error, such as:</li>
+</ul>
+<p>Since we know at least 2 columns are present in the table let’s try order by 3</p>
+<p>use ctrl + u for url encoding</p>
+<p class='item-img' data-src='https://dl.dropbox.com/scl/fi/mz1bx13gq4g17b2y3kgk3/Pasted-image-20240528112609.png?rlkey=sp7v30fo5b9ia9l6tc2vn0cu0&st=kbaasmem&dl=0'><img src="https://dl.dropbox.com/scl/fi/mz1bx13gq4g17b2y3kgk3/Pasted-image-20240528112609.png?rlkey=sp7v30fo5b9ia9l6tc2vn0cu0&st=kbaasmem&dl=0"></p>
+<p>we got a internal server error that means only 2 columns are present now let’s focus on retrieving version number  </p>
+<p>Let’s explore union attacks a bit </p>
+<ul>
+<li>results of the query are returned within the application’s responses, you can use the <code>UNION</code> keyword to retrieve data from other tables within the database. This is commonly known as a SQL injection UNION attack.</li>
+<li>The <code>UNION</code> keyword enables you to execute one or more additional <code>SELECT</code> queries and append the results to the original query</li>
+</ul>
+<p><code>SELECT a, b FROM table1 UNION SELECT c, d FROM table2</code></p>
+<p>This SQL query returns a single result set with two columns, containing values from columns <code>a</code> and <code>b</code> in <code>table1</code> and columns <code>c</code> and <code>d</code> in <code>table2</code>.</p>
+<p>For a <code>UNION</code> query to work, two key requirements must be met:</p>
+<ul>
+<li>The individual queries must return the same number of columns.</li>
+<li>The data types in each column must be compatible between the individual queries.</li>
+</ul>
+<p>since the product and description is i strings format we can perform a union attack here  , let’s focus on building a payload now </p>
+<p>SELECT banner FROM v$version</p>
+<p>so our payload will be <code>&#39;UNION SELECT banner, NULL FROM v$version--</code></p>
+<p>so i injected my payload and boom!</p>
+<p class='item-img' data-src='https://dl.dropbox.com/scl/fi/akvly9ts8mm9x4r0mcbke/Pasted-image-20240528113754.png?rlkey=bgcicoqoes065af78dcdya966&st=ppl8wew0&dl=0'><img src="https://dl.dropbox.com/scl/fi/akvly9ts8mm9x4r0mcbke/Pasted-image-20240528113754.png?rlkey=bgcicoqoes065af78dcdya966&st=ppl8wew0&dl=0"></p>
+<p>we displayed the version number on the website</p>
+<p class='item-img' data-src='https://dl.dropbox.com/scl/fi/s5sn15s9w3tqcw2n8y5ye/Pasted-image-20240528113833.png?rlkey=b9ua2edm8a9cjbbxgz5fsvzp5&st=6o5h7ssj&dl=0'><img src="https://dl.dropbox.com/scl/fi/s5sn15s9w3tqcw2n8y5ye/Pasted-image-20240528113833.png?rlkey=b9ua2edm8a9cjbbxgz5fsvzp5&st=6o5h7ssj&dl=0"></p>
+<div id="paginator"></div></div><div id="post-footer"><div id="pages"><div class="footer-link" style="width: 50%;text-align:right;border-right:1px #fe2 solid"><a href="/2024/07/20/Portswigger/SQL-injection/Sql-injection-union-attack-determining-the-number-of-columns-returned-by-the-query/">← Next Sql Injection Union Attack Determining the Number of Columns Returned by the Query</a></div><div class="footer-link" style="width: 50%;right:1px;border-left:1px #fe2 solid"><a href="/2024/07/19/Portswigger/SQL-injection/Sql-injection-querying/">Sql Injection Querying Prev →</a></div></div></div></div><div class="bottom-btn"><div><a class="i-top" id="to-top" onClick="scrolls.scrolltop();" title="To Top" style="opacity: 0; display: none;">∧ </a><a class="i-index" id="to-index" href="#toc-div" title="To Catalog">≡</a><a class="i-color" id="color-mode" onClick="colorMode.change()" title="Change Theme"></a></div></div></article><aside><div id="about"><a href="/" id="logo"><img src="https://dl.dropbox.com/scl/fi/fqvt7r79helfg6xr2ezg0/law-removebg-preview.png?rlkey=d897y2x6cos2hcasqagui6wy9&amp;st=itvktys9&amp;dl=0" alt="Logo"></a><h1 id="Dr"><a href="/">Santhosh vardan</a></h1><div id="description"><p></p></div><div id="social-links"><a class="social" target="_blank" rel="noopener" href="https://github.com/darkrider00"><i class="fab fa-github" alt="GitHub"></i></a><a class="social" href="mailto:santoshvardan007@gmail.com"><i class="fa fa-envelope" alt="E-Mail"></i></a><a class="social" target="_blank" rel="noopener" href="https://x.com/perplex_007"><i class="fa-brands fa-twitter" alt="Twitter"></i></a><a class="social" target="_blank" rel="noopener" href="https://www.linkedin.com/in/perplex007/"><i class="fab fa-linkedin" alt="Linkedin"></i></a></div></div><div id="aside-block"><div id="toc-div"><h1>Catalog</h1><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#ABOUT-ORDER-BY"><span class="toc-number">1.</span> <span class="toc-text">ABOUT ORDER BY:</span></a></li></ol></div></div><footer><nobr>Published with <a target="_blank" rel="noopener" href="http://hexo.io">Hexo</a></nobr><wbr><nobr> Theme <a target="_blank" rel="noopener" href="https://github.com/Yue-plus/hexo-theme-arknights">Arknights</a></nobr><wbr><nobr> by <a target="_blank" rel="noopener" href="https://github.com/Yue-plus">Yue_plus</a></nobr></footer></aside></main><canvas id="canvas-dust"></canvas></body></html>

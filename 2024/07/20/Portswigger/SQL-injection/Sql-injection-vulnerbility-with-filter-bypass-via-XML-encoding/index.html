@@ -1,0 +1,128 @@
+<!DOCTYPE html><html lang="en" theme-mode="dark"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Sql Injection Vulnerbility With Filter Bypass via XML Encoding | Perplex blog</title><link rel="icon" type="image/x-icon" href="/favicon.ico"><link rel="preload" as="font" crossorigin="anonymous" href="/font/Bender.ttf"><link rel="preload" as="font" crossorigin="anonymous" href="/font/BenderLight.ttf"><link rel="preload" as="font" crossorigin="anonymous" href="/font/JetBrainsMono-Regular.woff2"><link rel="stylesheet" href="/css/arknights.css"><style>@font-face {
+  font-family: Bender;
+  src: local('Bender'), url("/font/Bender.ttf"), url("/font/Bender.otf");
+}
+@font-face {
+  font-family: BenderLight;
+  src: local('BenderLight'), url("/font/BenderLight.ttf");
+}
+@font-face {
+  font-family: 'JetBrains Mono';
+  src: local('JetBrains Mono'), url('/font/JetBrainsMono-Regular.woff2') format('woff2');
+}
+</style><script>var config = {"root":"/","search":{"preload":false,"activeHolder":"Enter here","blurHolder":"Search","noResult":"Data \"$0\" not found"},"code":{"codeInfo":"$0 - $1 lines","copy":"copy"}}</script><link type="text/css" rel="stylesheet" href="/lib/encrypt/hbe.style.css"><script src="//unpkg.com/mermaid@10.5.0/dist/mermaid.min.js"></script><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lightgallery.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-zoom.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-thumbnail.css"><link type="text/css" rel="stylesheet" href="/lib/fontawesome/css/all.min.css"><script>if (window.localStorage.getItem('theme-mode') === 'light')
+ document.documentElement.setAttribute('theme-mode', 'light')
+if (window.localStorage.getItem('theme-mode') === 'dark')
+ document.documentElement.setAttribute('theme-mode', 'dark')</script><style>@font-face {
+ font-family: BenderLight;
+ src: local('Bender'), url("/font/BenderLight.woff2") format('woff2');
+}
+@font-face {
+ font-family: 'JetBrains Mono';
+ src: local('JetBrains Mono'), url('/font/JetBrainsMono-Regular.woff2') format('woff2');
+}</style><style>:root {
+ --dark-background: url('https://ak.hypergryph.com/assets/index/images/ak/pc/bk.jpg');
+ --light-background: url('/img/bk.jpg');
+ --theme-encrypt-confirm: 'confirm'
+}</style><script defer src="/js/arknights.js"></script><script defer src="/js/search.js"></script><script defer type="module">import mermaid from '//unpkg.com/mermaid@10.5.0/dist/mermaid.esm.mjs';
+window.mermaid = mermaid;
+code.paintMermaid();
+</script><script async src="//unpkg.com/lightgallery@2.7.1/lightgallery.min.js"></script><script async src="//unpkg.com/lightgallery@2.7.1/plugins/zoom/lg-zoom.min.js"></script><script async src="//unpkg.com/lightgallery@2.7.1/plugins/thumbnail/lg-thumbnail.min.js"></script><script async src="/lib/encrypt/hbe.js"></script><script async src="/js/pjax.js"></script><script class="pjax-js">reset= () => {document.querySelector('.lg-container')?.remove()
+lightGallery(document.getElementById('post-bg'), {
+  plugins: [lgZoom,lgThumbnail],
+  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js','data-pjax','.busuanzi'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script><script class="pjax-js">reset= () => {document.querySelector('.lg-container')?.remove()
+lightGallery(document.getElementById('post-bg'), {
+  plugins: [lgZoom,lgThumbnail],
+  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script><meta name="generator" content="Hexo 7.3.0"></head><body><div class="loading" style="opacity: 0;"><div class="loadingBar left"></div><div class="loadingBar right"></div></div><main><header class="closed"><div class="navBtn"><i class="navBtnIcon"><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span></i></div><nav><div class="navItem" id="search-header"><span class="navItemTitle"><input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="Search" spellcheck="false" maxlength="50" type="text" id="search-input"></span></div><div class="navItem" id="search-holder"></div><div class="search-popup" tabindex="0"><div id="search-result"></div></div><ol class="navContent"><li class="navItem"><a class="navBlock" href="/"><span class="navItemTitle">Home</span></a></li><li class="navItem" matchdata="categories,tags"><a class="navBlock" href="/archives/"><span class="navItemTitle">Archives</span></a></li></ol></nav></header><article><div id="post-bg"><div id="post-title"><h1>Sql Injection Vulnerbility With Filter Bypass via XML Encoding</h1><div id="post-info"><span>First Post: <div class="control"><time datetime="2024-07-20T01:34:30.000Z" id="date"> 2024-07-20</time></div></span><br><span>Last Update: <div class="control"><time datetime="2024-09-21T17:12:20.745Z" id="updated"> 2024-09-21</time></div></span></div></div><hr><div id="post-content"><p class='item-img' data-src='https://dl.dropbox.com/scl/fi/y8zqmanromsgx4p640qut/Pasted-image-20240527125758.png?rlkey=8qxh6t75jde05zy0zwbkuxibn&st=swjqpwf9&dl=0'><img src="https://dl.dropbox.com/scl/fi/y8zqmanromsgx4p640qut/Pasted-image-20240527125758.png?rlkey=8qxh6t75jde05zy0zwbkuxibn&st=swjqpwf9&dl=0"></p>
+<p>The above image is lab description<br>from the above description </p>
+<ul>
+<li>we know that there is a database that contains username and password </li>
+<li>to solve the lab we have to retrieve the username and password and login to their account.</li>
+</ul>
+<p>Let’s take a look at the hint </p>
+<h2 id="hint"><a href="#hint" class="headerlink" title="hint"></a>hint</h2><p><code>A web application firewall (WAF) will block requests that contain obvious signs of a SQL injection attack. You&#39;ll need to find a way to obfuscate your malicious query to bypass this filter. We recommend using the [Hackvertor](https://portswigger.net/bappstore/65033cbd2c344fbabe57ac060b5dd100) extension to do this.</code></p>
+<p>the website :</p>
+<p class='item-img' data-src='https://dl.dropbox.com/scl/fi/mi7yr7gvnizdyxmd3cbhb/Pasted-image-20240527125821.png?rlkey=a3ioeswaga7tvy3afbmvldtn2&st=yhor7rk6&dl=0'><img src="https://dl.dropbox.com/scl/fi/mi7yr7gvnizdyxmd3cbhb/Pasted-image-20240527125821.png?rlkey=a3ioeswaga7tvy3afbmvldtn2&st=yhor7rk6&dl=0"></p>
+<p>I’ve turned on the burp proxy now let’s navigate through the website.<br>let’s check for inputs fields in the website for sql injection </p>
+<p class='item-img' data-src='https://dl.dropbox.com/scl/fi/pgd2ofal3jstk3s8momuv/Pasted-image-20240527125921.png?rlkey=8a5zlstj1t2abzohyg3rjejys&st=5wqq8r04&dl=0'><img src="https://dl.dropbox.com/scl/fi/pgd2ofal3jstk3s8momuv/Pasted-image-20240527125921.png?rlkey=8a5zlstj1t2abzohyg3rjejys&st=5wqq8r04&dl=0"></p>
+<p>here there is a input field if we click on view details of any product </p>
+<p>now let’s take a look at http history that is recorded in the burpsuite</p>
+<p class='item-img' data-src='https://dl.dropbox.com/scl/fi/2nkdb56fb6ijmm617v1xw/Pasted-image-20240527114009.png?rlkey=x8i2e03jp1xclkb66264yg9vt&st=82r5ttiv&dl=0'><img src="https://dl.dropbox.com/scl/fi/2nkdb56fb6ijmm617v1xw/Pasted-image-20240527114009.png?rlkey=x8i2e03jp1xclkb66264yg9vt&st=82r5ttiv&dl=0"></p>
+<p>here the server is requesting the product id and it is communicating with back so let’s send this to repeater .</p>
+<p class='item-img' data-src='https://dl.dropbox.com/scl/fi/d1ohzs6b2xxtawbpk28xh/Pasted-image-20240527114215.png?rlkey=yvf1awvwmu71yr3q2p28ky2yg&st=8t018h82&dl=0'><img src="https://dl.dropbox.com/scl/fi/d1ohzs6b2xxtawbpk28xh/Pasted-image-20240527114215.png?rlkey=yvf1awvwmu71yr3q2p28ky2yg&st=8t018h82&dl=0"></p>
+<p class='item-img' data-src='https://dl.dropbox.com/scl/fi/84ugjxvfljxp6ehy84mhy/Pasted-image-20240527114334.png?rlkey=yk5hxpatfon1msyzrzdvsssx7&st=hdno3ph4&dl=0'><img src="https://dl.dropbox.com/scl/fi/84ugjxvfljxp6ehy84mhy/Pasted-image-20240527114334.png?rlkey=yk5hxpatfon1msyzrzdvsssx7&st=hdno3ph4&dl=0"></p>
+<p>here’s when we click on check stock then we are getting the number units present at that location we can definitely inject some payloads here<br> let’s send this to repeater too </p>
+<p class='item-img' data-src='https://dl.dropbox.com/scl/fi/45jxdnosu05hm4nty28rs/Pasted-image-20240527115321.png?rlkey=tnfnva2q0zql2puhrj6gjxswq&st=szz0g9yl&dl=0'><img src="https://dl.dropbox.com/scl/fi/45jxdnosu05hm4nty28rs/Pasted-image-20240527115321.png?rlkey=tnfnva2q0zql2puhrj6gjxswq&st=szz0g9yl&dl=0"></p>
+<p>in this when we input the product id we are getting number of units present<br> let’s add <code>UNION SELECT NULL</code> to product id to determine number of columns.</p>
+<p class='item-img' data-src='https://dl.dropbox.com/scl/fi/ao9v53aoxfr01mnevflab/Pasted-image-20240527115659.png?rlkey=afkjjwbmlab6eih07ifrmwyro&st=nd36beue&dl=0'><img src="https://dl.dropbox.com/scl/fi/ao9v53aoxfr01mnevflab/Pasted-image-20240527115659.png?rlkey=afkjjwbmlab6eih07ifrmwyro&st=nd36beue&dl=0"></p>
+<p>we got attack detected that’s why they gave us a hint about WAF in the hint section</p>
+<ul>
+<li>we need to obfusacate the input so that it will bypass the firewall , we need to install hackvetor extension to install hackvector extension  go to extensions tab and go to bwapp store and search for hackvector extension as mentioned in [[SQL injection with filter bypass via XML encoding#hint]]<br>or you can encode manually refer  to the last section</li>
+</ul>
+<p class='item-img' data-src='https://dl.dropbox.com/scl/fi/wrsyi7elseqb0ditxi2zx/Pasted-image-20240527120459.png?rlkey=ogqp378ct7n5kans24r9b8oer&st=uaepk5rr&dl=0'><img src="https://dl.dropbox.com/scl/fi/wrsyi7elseqb0ditxi2zx/Pasted-image-20240527120459.png?rlkey=ogqp378ct7n5kans24r9b8oer&st=uaepk5rr&dl=0"></p>
+<ul>
+<li>click on install to install the hack vector extension </li>
+<li>for more information on the hack vector extension refer [[Hackvector extension]]</li>
+</ul>
+<p class='item-img' data-src='https://dl.dropbox.com/scl/fi/mvrslhfbooabif1nki5fp/Pasted-image-20240527121136.png?rlkey=zbb99leilf6zlfjnudcx3loum&st=bvmayoes&dl=0'><img src="https://dl.dropbox.com/scl/fi/mvrslhfbooabif1nki5fp/Pasted-image-20240527121136.png?rlkey=zbb99leilf6zlfjnudcx3loum&st=bvmayoes&dl=0"></p>
+<p>as we can see hack vector extension has been installed and loaded we can see it in the repeater section</p>
+<ul>
+<li>to use the hackvector select the payload you’ve already written and right click on it and select extensions and select encode using hex entities and then send the request.</li>
+</ul>
+<p class='item-img' data-src='https://dl.dropbox.com/scl/fi/tt13eoyyakfj53a0k1slf/Pasted-image-20240527121548.png?rlkey=q6ew7arx5p7xjaft7f53uq44b&st=iq7qfy4q&dl=0'><img src="https://dl.dropbox.com/scl/fi/tt13eoyyakfj53a0k1slf/Pasted-image-20240527121548.png?rlkey=q6ew7arx5p7xjaft7f53uq44b&st=iq7qfy4q&dl=0"></p>
+<p>as you can see hex entities tags are added to the payload we’ve selected </p>
+<p class='item-img' data-src='https://dl.dropbox.com/scl/fi/ci669n9iyb8d8bnt62ob1/Pasted-image-20240527121619.png?rlkey=r0fjm3jg0ozmx9xxyk9r7y8lq&st=3yc0eos3&dl=0'><img src="https://dl.dropbox.com/scl/fi/ci669n9iyb8d8bnt62ob1/Pasted-image-20240527121619.png?rlkey=r0fjm3jg0ozmx9xxyk9r7y8lq&st=3yc0eos3&dl=0"></p>
+<p>and Boom !</p>
+<p class='item-img' data-src='https://dl.dropbox.com/scl/fi/go5m887ptdoybuni0ht8l/Pasted-image-20240527122135.png?rlkey=4hrf7oxrmayhbnvjmehnlwbtw&st=biq1d89x&dl=0'><img src="https://dl.dropbox.com/scl/fi/go5m887ptdoybuni0ht8l/Pasted-image-20240527122135.png?rlkey=4hrf7oxrmayhbnvjmehnlwbtw&st=biq1d89x&dl=0"></p>
+<p>we dind’t get any attack detected in the response tab<br>we successfully bypassed the WAF with this extension </p>
+<ul>
+<li>now let’s add another null to the statement to see if there are 2 columns </li>
+<li>we can add ORDER by 2 or ORDER by 3 to determine the colums</li>
+</ul>
+<p class='item-img' data-src='https://dl.dropbox.com/scl/fi/osfbdosez2qkvrwiqpbbz/Pasted-image-20240527123937.png?rlkey=0gf9d1gtaumfjaix3eseny755&st=rhr8fpj7&dl=0'><img src="https://dl.dropbox.com/scl/fi/osfbdosez2qkvrwiqpbbz/Pasted-image-20240527123937.png?rlkey=0gf9d1gtaumfjaix3eseny755&st=rhr8fpj7&dl=0"></p>
+<p class='item-img' data-src='https://dl.dropbox.com/scl/fi/barmwisjc6v7pgg41be4t/Pasted-image-20240527124037.png?rlkey=saer2mtkimn84hx0aubbsxblu&st=qce7n2i2&dl=0'><img src="https://dl.dropbox.com/scl/fi/barmwisjc6v7pgg41be4t/Pasted-image-20240527124037.png?rlkey=saer2mtkimn84hx0aubbsxblu&st=qce7n2i2&dl=0"></p>
+<p class='item-img' data-src='https://dl.dropbox.com/scl/fi/q0zqxo54p31glrnpsu9cg/Pasted-image-20240527122405.png?rlkey=h3e0qnmj7kxbgpg5ocnn052hz&st=5g1v80vo&dl=0'><img src="https://dl.dropbox.com/scl/fi/q0zqxo54p31glrnpsu9cg/Pasted-image-20240527122405.png?rlkey=h3e0qnmj7kxbgpg5ocnn052hz&st=5g1v80vo&dl=0"></p>
+<p>we got 0 units that means only one column is present in the table </p>
+<p>let’s build  a payload now to retrieve the username and password table </p>
+<p><code>1 UNION SELECT username || &#39;~&#39; || password FROM users</code></p>
+<ul>
+<li>let’s breakdown this payload we’ve built union select is used to select and we are selecting username </li>
+<li><strong><code>||</code></strong>: This is the string concatenation operator in SQL (specifically in databases like SQLite and PostgreSQL). It concatenates two or more strings.</li>
+<li><strong><code>&#39;~&#39;</code></strong>: This is a tilde character being used as a delimiter (to separate username and password)</li>
+<li>and passwords from table users</li>
+</ul>
+<p class='item-img' data-src='https://dl.dropbox.com/scl/fi/24zbfcsj4pbxtr2x39yyy/Pasted-image-20240527122849.png?rlkey=31o7o7oqdz1j2xelyq130ayr1&st=2n2fwe24&dl=0'><img src="https://dl.dropbox.com/scl/fi/24zbfcsj4pbxtr2x39yyy/Pasted-image-20240527122849.png?rlkey=31o7o7oqdz1j2xelyq130ayr1&st=2n2fwe24&dl=0"></p>
+<p>we got our username and passwords </p>
+<p>in this lab we are looking for admin account so let’s login with these details </p>
+<p class='item-img' data-src='https://dl.dropbox.com/scl/fi/g6mpo93n9buroiua1fgck/Pasted-image-20240527123358.png?rlkey=rudg9g8xs8e8m9g26uvi12kg0&st=elnj3r32&dl=0'><img src="https://dl.dropbox.com/scl/fi/g6mpo93n9buroiua1fgck/Pasted-image-20240527123358.png?rlkey=rudg9g8xs8e8m9g26uvi12kg0&st=elnj3r32&dl=0"></p>
+<p>we are logged in and we solved the lab </p>
+<p>for more detailed walkthrough : <a target="_blank" rel="noopener" href="https://youtu.be/2iqMm0gMyHk">https://youtu.be/2iqMm0gMyHk</a></p>
+<h2 id="Alternative-encoding"><a href="#Alternative-encoding" class="headerlink" title="Alternative encoding"></a>Alternative encoding</h2><p>in this encoding we use online tools like cyberchef<br>maybe something like this </p>
+<p class='item-img' data-src='https://dl.dropbox.com/scl/fi/0izimf7m3hjcmen8hdoau/Pasted-image-20240527131254.png?rlkey=xjyn3dov9r2amewn93pqk1cva&st=28sm5ko2&dl=0'><img src="https://dl.dropbox.com/scl/fi/0izimf7m3hjcmen8hdoau/Pasted-image-20240527131254.png?rlkey=xjyn3dov9r2amewn93pqk1cva&st=28sm5ko2&dl=0"></p>
+<div id="paginator"></div></div><div id="post-footer"><div id="pages"><div class="footer-link" style="width: 50%;text-align:right;border-right:1px #fe2 solid"><a href="/2024/09/21/hello-world/">← Next Hello World</a></div><div class="footer-link" style="width: 50%;right:1px;border-left:1px #fe2 solid"><a href="/2024/07/20/Portswigger/SQL-injection/Sql-injection-vulnerbility-in-where-clause-allowing-retrieval-of-hidden-data/">Sql Injection Vulnerbility in Where Clause Allowing Retrieval of Hidden Data Prev →</a></div></div></div></div><div class="bottom-btn"><div><a class="i-top" id="to-top" onClick="scrolls.scrolltop();" title="To Top" style="opacity: 0; display: none;">∧ </a><a class="i-index" id="to-index" href="#toc-div" title="To Catalog">≡</a><a class="i-color" id="color-mode" onClick="colorMode.change()" title="Change Theme"></a></div></div></article><aside><div id="about"><a href="/" id="logo"><img src="https://dl.dropbox.com/scl/fi/fqvt7r79helfg6xr2ezg0/law-removebg-preview.png?rlkey=d897y2x6cos2hcasqagui6wy9&amp;st=itvktys9&amp;dl=0" alt="Logo"></a><h1 id="Dr"><a href="/">Santhosh vardan</a></h1><div id="description"><p></p></div><div id="social-links"><a class="social" target="_blank" rel="noopener" href="https://github.com/darkrider00"><i class="fab fa-github" alt="GitHub"></i></a><a class="social" href="mailto:santoshvardan007@gmail.com"><i class="fa fa-envelope" alt="E-Mail"></i></a><a class="social" target="_blank" rel="noopener" href="https://x.com/perplex_007"><i class="fa-brands fa-twitter" alt="Twitter"></i></a><a class="social" target="_blank" rel="noopener" href="https://www.linkedin.com/in/perplex007/"><i class="fab fa-linkedin" alt="Linkedin"></i></a></div></div><div id="aside-block"><div id="toc-div"><h1>Catalog</h1><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#hint"><span class="toc-number">1.</span> <span class="toc-text">hint</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Alternative-encoding"><span class="toc-number">2.</span> <span class="toc-text">Alternative encoding</span></a></li></ol></div></div><footer><nobr>Published with <a target="_blank" rel="noopener" href="http://hexo.io">Hexo</a></nobr><wbr><nobr> Theme <a target="_blank" rel="noopener" href="https://github.com/Yue-plus/hexo-theme-arknights">Arknights</a></nobr><wbr><nobr> by <a target="_blank" rel="noopener" href="https://github.com/Yue-plus">Yue_plus</a></nobr></footer></aside></main><canvas id="canvas-dust"></canvas></body></html>
